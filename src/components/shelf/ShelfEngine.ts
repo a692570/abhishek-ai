@@ -221,12 +221,14 @@ export class ShelfEngine {
       canvas,
       antialias: true,
       powerPreference: "high-performance",
+      alpha: true,
     });
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.03;
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
+    this.renderer.setClearColor(0x000000, 0);
 
     this.camera = new THREE.PerspectiveCamera(27, 1, 0.08, 80);
     this.camera.position.copy(browseCamera);
@@ -275,7 +277,7 @@ export class ShelfEngine {
   }
 
   private setupScene() {
-    this.scene.background = new THREE.Color("#eee8db");
+    // transparent canvas - inherits page background
     this.scene.fog = new THREE.Fog("#eee8db", 10, 26);
 
     const hemisphere = new THREE.HemisphereLight("#fff8ea", "#6e5848", 2.4);

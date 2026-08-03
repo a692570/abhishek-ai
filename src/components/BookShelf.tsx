@@ -40,7 +40,7 @@ export default function BookShelf() {
   function backToShelf() { engineRef.current?.returnToShelf(); }
 
   return (
-    <div className={"shelf-experience" + (ready ? " is-ready" : "") + (isFocused ? " is-focused" : " is-browsing")}>
+    <div className={"shelf-experience" + (ready ? " is-ready is-active" : "") + (isFocused ? " is-focused" : " is-browsing")}>
       <canvas
         ref={canvasRef}
         className="shelf-canvas"
@@ -67,6 +67,16 @@ export default function BookShelf() {
           </button>
         </>
       )}
+      <div className="shelf-ticks">
+        {catalog.map((_, i) => (
+          <button
+            key={i}
+            className={i === activeIndex ? "is-active" : ""}
+            onClick={() => focusBook(i)}
+            aria-label="Book"
+          />
+        ))}
+      </div>
       {isFocused && selectedBook && (
         <aside className="shelf-details">
           <button className="shelf-back" onClick={backToShelf}>Back to shelf</button>
