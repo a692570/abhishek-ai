@@ -48,12 +48,15 @@ export default function BookShelf() {
         aria-label="Interactive 3D shelf of books. Drag to browse."
       />
       <div className="shelf-caption">
-        <p className="shelf-pos">{activeIndex + 1} / {catalog.length}</p>
+        <p className="shelf-eyebrow">
+          <span className="shelf-eyebrow-line" />
+          {activeIndex + 1} / {catalog.length}
+        </p>
         <p className="shelf-title">{activeBook?.shortTitle}</p>
         <p className="shelf-author">{activeBook?.author}</p>
         {!isFocused && (
           <button className="shelf-inspect" onClick={() => focusBook(activeIndex)}>
-            Inspect
+            <span>Inspect</span>
           </button>
         )}
       </div>
