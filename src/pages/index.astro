@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BookShelf from "../components/BookShelf";
+import "../styles/global.css";
+---
+<Layout title="Abhishek Sharma">
+<div class="page">
+  <header>
+    <div class="header-top">
+      <div class="avatar-wrap" id="avatar-wrap">
+        <img src="/profile/nobg/center.webp" alt="Abhishek Sharma" class="avatar avatar-light" width="120" height="120" />
+        <img src="/profile/nobg/black-center.webp" alt="Abhishek Sharma" class="avatar avatar-dark" width="120" height="120" />
+      </div>
+      <button id="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-light">sun</span>
+        <span class="icon-dark">moon</span>
+      </button>
+    </div>
+    <h1>Abhishek Sharma</h1>
+    <p class="tagline">PMM at Vapi. Building the voice AI layer. Previously NVIDIA, Telnyx. Writing about AI products, developer tools, and the craft of bringing them to market.</p>
+  </header>
+  <main>
+    <details id="about" open>
+      <summary><h2>About</h2></summary>
+      <p>I am a product marketer living in San Francisco, working on voice AI at Vapi. I write about the gap between what AI can do and what ships, and how PMM changes when your buyers are also builders.</p>
+      <p>This site is a notebook, a shelf, and a face that watches your cursor. The face is a placeholder for now.</p>
+    </details>
+    <details id="career">
+      <summary><h2>Career</h2></summary>
+      <div class="career-list">
+        <div class="career-item"><div class="career-meta"><span class="career-date">2025-now</span></div><div class="career-details"><span class="career-title">PMM</span><h3><a href="https://vapi.ai" target="_blank" rel="noopener">Vapi</a></h3><p>Product marketing for the voice AI platform. Building the GTM motion for a developer-first API company.</p></div></div>
+        <div class="career-item"><div class="career-meta"><span class="career-date">2024-2025</span></div><div class="career-details"><span class="career-title">PMM</span><h3><a href="https://telnyx.com" target="_blank" rel="noopener">Telnyx</a></h3><p>Product marketing for AI voice, STT, TTS, and the communications API suite. Competitive intel, release notes, demo videos, and content for the voice AI category.</p></div></div>
+        <div class="career-item"><div class="career-meta"><span class="career-date">2024</span></div><div class="career-details"><span class="career-title">Interview</span><h3>NVIDIA</h3><p>Finalist for a PMM role. Values fit: writing is thinking, why-now over why-us.</p></div></div>
+      </div>
+    </details>
+    <details id="writing">
+      <summary><h2>Writing</h2></summary>
+      <div class="project-list">
+        <a class="project-item" href="#"><strong>This Week in Voice AI</strong><span>Weekly newsletter covering the voice AI stack: STT, TTS, agents, and the companies building them.</span></a>
+        <a class="project-item" href="#"><strong>Abhis Mixtape</strong><span>Personal Substack. Essays on PMM, AI products, and the craft of shipping.</span></a>
+      </div>
+    </details>
+    <details id="projects">
+      <summary><h2>Side Projects</h2></summary>
+      <div class="project-list">
+        <a class="project-item" href="#"><strong>Crab Audio</strong><span>A headless agent running on a Mac Mini. Always-on, multi-platform, cron-driven.</span></a>
+        <a class="project-item" href="#"><strong>LLM Price Chart</strong><span>Tracking 7 LLM providers token prices over time. Open data, single file.</span></a>
+      </div>
+    </details>
+    <details id="bookshelf">
+      <summary><h2>Bookshelf</h2></summary>
+      <p>Books I have read recently. Drag the shelf to browse, click a book to inspect.</p>
+      <BookShelf client:only="react" />
+    </details>
+  </main>
+  <footer>
+    <a href="https://twitter.com/abhiclawd" target="_blank" rel="noopener">Twitter</a>
+    <a href="https://www.linkedin.com/in/abhisheksharma" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:abhishek@vapi.ai">Email</a>
+  </footer>
+</div>
+<script>
+  import { initFace } from "../components/CursorFace";
+  initFace();
+  const toggle = document.getElementById("theme-toggle");
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      const current = document.documentElement.dataset.theme || "light";
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem("theme", next);
+    });
+  }
+</script>
+</Layout>
