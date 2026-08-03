@@ -47,39 +47,6 @@ export default function BookShelf() {
         tabIndex={0}
         aria-label="Interactive 3D shelf of books. Drag to browse."
       />
-      <div className="shelf-caption">
-        <p className="shelf-eyebrow">
-          <span className="shelf-eyebrow-line" />
-          {activeIndex + 1} / {catalog.length}
-        </p>
-        <p className="shelf-title">{activeBook?.shortTitle}</p>
-        <p className="shelf-author">{activeBook?.author}</p>
-        {!isFocused && (
-          <button className="shelf-inspect" onClick={() => focusBook(activeIndex)}>
-            <span>Inspect</span>
-          </button>
-        )}
-      </div>
-      {!isFocused && (
-        <>
-          <button className="shelf-arrow shelf-arrow--left" onClick={prevBook} aria-label="Previous">
-            {"<"}
-          </button>
-          <button className="shelf-arrow shelf-arrow--right" onClick={nextBook} aria-label="Next">
-            {">"}
-          </button>
-        </>
-      )}
-      <div className="shelf-ticks">
-        {catalog.map((_, i) => (
-          <button
-            key={i}
-            className={i === activeIndex ? "is-active" : ""}
-            onClick={() => focusBook(i)}
-            aria-label="Book"
-          />
-        ))}
-      </div>
       {isFocused && selectedBook && (
         <aside className="shelf-details">
           <button className="shelf-back" onClick={backToShelf}>Back to shelf</button>
