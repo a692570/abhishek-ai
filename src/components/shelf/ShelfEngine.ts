@@ -169,6 +169,7 @@ export class ShelfEngine {
   private animationFrame = 0;
   private resizeObserver: ResizeObserver;
   private mode: ShelfMode = "browse";
+  private isDarkMode = false;
   private selectedIndex: number | null = null;
   private activeIndex = 0;
   private presentedIndex: number | null = 0;
@@ -229,6 +230,7 @@ export class ShelfEngine {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.setClearColor(0x000000, 0);
+    this.isDarkMode = document.documentElement.dataset.theme === "dark";
 
     this.camera = new THREE.PerspectiveCamera(27, 1, 0.08, 80);
     this.camera.position.copy(browseCamera);
@@ -278,12 +280,12 @@ export class ShelfEngine {
 
   private setupScene() {
     // transparent canvas - inherits page background
-    this.scene.fog = new THREE.Fog("#eee8db", 10, 26);
+    this.scene.fog = new THREE.Fog(this.isDarkMode ? "#1a1a1a" : "#eee8db", 10, 26);
 
-    const hemisphere = new THREE.HemisphereLight("#fff8ea", "#6e5848", 2.4);
+    const hemisphere = new THREE.HemisphereLight(this.isDarkMode ? "#3a3a3a" : "#fff8ea", this.isDarkMode ? "#1a1a1a" : "#6e5848", this.isDarkMode ? 1.2 : 2.4);
     this.scene.add(hemisphere);
 
-    const key = new THREE.DirectionalLight("#fff6e7", 4.6);
+    const key = new THREE.DirectionalLight(this.isDarkMode ? "#d4d4d4" : "#fff6e7", this.isDarkMode ? 2.8 : 4.6);
     key.position.set(-4.2, 7.4, 5.5);
     key.castShadow = true;
     key.shadow.mapSize.set(
@@ -299,18 +301,18 @@ export class ShelfEngine {
     key.shadow.bias = -0.0005;
     this.scene.add(key);
 
-    const rim = new THREE.DirectionalLight("#c8d5e5", 2.1);
+    const rim = new THREE.DirectionalLight(this.isDarkMode ? "#4a5a7a" : "#c8d5e5", this.isDarkMode ? 1.5 : 2.1);
     rim.position.set(5, 3, -4);
     this.scene.add(rim);
 
-    const warmBounce = new THREE.PointLight("#d79b72", 1.2, 10, 2);
+    const warmBounce = new THREE.PointLight(this.isDarkMode ? "#d4764a" : "#d79b72", this.isDarkMode ? 2.0 : 1.2, 10, 2);
     warmBounce.position.set(-3, 0.4, 3.2);
     this.scene.add(warmBounce);
 
     const wall = new THREE.Mesh(
       new THREE.PlaneGeometry(34, 18),
       new THREE.MeshStandardMaterial({
-        color: "#eee8db",
+        color: this.isDarkMode ? "#1a1a1a" : "#eee8db",
         roughness: 1,
         metalness: 0,
       }),
@@ -322,7 +324,7 @@ export class ShelfEngine {
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(36, 18),
       new THREE.MeshStandardMaterial({
-        color: "#e7dfd0",
+        color: this.isDarkMode ? "#141414" : "#e7dfd0",
         roughness: 0.94,
         metalness: 0,
       }),
@@ -1035,7 +1037,7 @@ export class ShelfEngine {
       this.mode === "returning"
         ? this.focusProgress
         : easeOutCubic(this.focusProgress);
-    const isolated = this.selectedIndex !== null && motionFocus > 0.72;
+    const isolated = this.selectedIndex !== null && motionFocus > 0.9;
     this.shelfFurniture.visible = !isolated;
     const focusX = window.innerWidth < 760 ? 0 : desktopFocusX;
     const focusZ =
@@ -1486,6 +1488,15 @@ export class ShelfEngine {
         clientHeight: this.canvas.clientHeight,
       },
     };
+  }
+
+    refreshTheme() {
+    const wasDark = this.isDarkMode;
+    this.isDarkMode = document.documentElement.dataset.theme === 'dark';
+    if (wasDark === this.isDarkMode) return;
+    if (this.scene.fog) {
+      this.scene.fog.color.set(this.isDarkMode ? '#1a1a1a' : '#eee8db');
+    }
   }
 
   dispose() {

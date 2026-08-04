@@ -31,7 +31,9 @@ export default function BookShelf() {
       engineRef.current = engine;
     }
     void start();
-    return () => { cancelled = true; engine?.dispose(); engineRef.current = null; };
+    const themeObserver = new MutationObserver(() => { engine?.refreshTheme(); });
+      themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      return () => { cancelled = true; themeObserver.disconnect(); engine?.dispose(); engineRef.current = null; };
   }, []);
 
   function focusBook(i: number) { engineRef.current?.focusBook(i); }
