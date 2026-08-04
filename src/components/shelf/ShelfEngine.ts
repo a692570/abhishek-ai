@@ -70,7 +70,9 @@ const shelfTop = 0.34;
 const browseCamera = new THREE.Vector3(0, 1.42, 6.65);
 const browseTarget = new THREE.Vector3(0, 1.28, 0.15);
 const pageColor = new THREE.Color("#e9dfca");
+const pageColorDark = new THREE.Color("#f5ead7");
 const shelfColor = new THREE.Color("#5a4132");
+const shelfColorDark = new THREE.Color("#3a2518");
 const clamp = THREE.MathUtils.clamp;
 const focusInDuration = 0.46;
 const focusOutDuration = 0.34;
@@ -280,12 +282,12 @@ export class ShelfEngine {
 
   private setupScene() {
     // transparent canvas - inherits page background
-    this.scene.fog = new THREE.Fog(this.isDarkMode ? "#1a1a1a" : "#eee8db", 10, 26);
+    this.scene.fog = new THREE.Fog(this.isDarkMode ? "#0a0a0a" : "#eee8db", this.isDarkMode ? 6 : 10, this.isDarkMode ? 20 : 26);
 
-    const hemisphere = new THREE.HemisphereLight(this.isDarkMode ? "#3a3a3a" : "#fff8ea", this.isDarkMode ? "#1a1a1a" : "#6e5848", this.isDarkMode ? 1.2 : 2.4);
+    const hemisphere = new THREE.HemisphereLight(this.isDarkMode ? "#2a2a35" : "#fff8ea", this.isDarkMode ? "#0a0a0a" : "#6e5848", this.isDarkMode ? 0.4 : 2.4);
     this.scene.add(hemisphere);
 
-    const key = new THREE.DirectionalLight(this.isDarkMode ? "#d4d4d4" : "#fff6e7", this.isDarkMode ? 2.8 : 4.6);
+    const key = new THREE.DirectionalLight(this.isDarkMode ? "#fff8e8" : "#fff6e7", this.isDarkMode ? 5.5 : 4.6);
     key.position.set(-4.2, 7.4, 5.5);
     key.castShadow = true;
     key.shadow.mapSize.set(
@@ -301,18 +303,18 @@ export class ShelfEngine {
     key.shadow.bias = -0.0005;
     this.scene.add(key);
 
-    const rim = new THREE.DirectionalLight(this.isDarkMode ? "#4a5a7a" : "#c8d5e5", this.isDarkMode ? 1.5 : 2.1);
+    const rim = new THREE.DirectionalLight(this.isDarkMode ? "#7a8aB0" : "#c8d5e5", this.isDarkMode ? 3.5 : 2.1);
     rim.position.set(5, 3, -4);
     this.scene.add(rim);
 
-    const warmBounce = new THREE.PointLight(this.isDarkMode ? "#d4764a" : "#d79b72", this.isDarkMode ? 2.0 : 1.2, 10, 2);
+    const warmBounce = new THREE.PointLight(this.isDarkMode ? "#e89060" : "#d79b72", this.isDarkMode ? 3.5 : 1.2, 10, 2);
     warmBounce.position.set(-3, 0.4, 3.2);
     this.scene.add(warmBounce);
 
     const wall = new THREE.Mesh(
       new THREE.PlaneGeometry(34, 18),
       new THREE.MeshStandardMaterial({
-        color: this.isDarkMode ? "#1a1a1a" : "#eee8db",
+        color: this.isDarkMode ? "#0a0a0a" : "#eee8db",
         roughness: 1,
         metalness: 0,
       }),
@@ -324,7 +326,7 @@ export class ShelfEngine {
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(36, 18),
       new THREE.MeshStandardMaterial({
-        color: this.isDarkMode ? "#141414" : "#e7dfd0",
+        color: this.isDarkMode ? "#080808" : "#e7dfd0",
         roughness: 0.94,
         metalness: 0,
       }),
@@ -372,7 +374,7 @@ export class ShelfEngine {
     const shelfWidth = cursor + 8;
     const shelfGeometry = new RoundedBoxGeometry(shelfWidth, 0.22, 1.72, 4, 0.045);
     const shelfMaterial = new THREE.MeshStandardMaterial({
-      color: shelfColor,
+      color: this.isDarkMode ? shelfColorDark : shelfColor,
       roughness: 0.62,
       metalness: 0.03,
     });
@@ -435,7 +437,7 @@ export class ShelfEngine {
       clearcoatRoughness: 0.7,
     });
     const paperMaterial = new THREE.MeshStandardMaterial({
-      color: pageColor,
+      color: this.isDarkMode ? pageColorDark : pageColor,
       roughness: 0.88,
       metalness: 0,
     });
@@ -1495,7 +1497,7 @@ export class ShelfEngine {
     this.isDarkMode = document.documentElement.dataset.theme === 'dark';
     if (wasDark === this.isDarkMode) return;
     if (this.scene.fog) {
-      this.scene.fog.color.set(this.isDarkMode ? '#1a1a1a' : '#eee8db');
+      this.scene.fog.color.set(this.isDarkMode ? '#0a0a0a' : '#eee8db');
     }
   }
 
