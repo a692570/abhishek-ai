@@ -1,5 +1,5 @@
 const DIRS=["center","top","top-right","right","bottom-right","bottom","bottom-left","left","top-left"];
-const LB="/abhishek-ai/profile/nobg/";const DB="/abhishek-ai/profile/nobg/black-";
+const LB=`${import.meta.env.BASE_URL}profile/nobg/`;const DB=`${import.meta.env.BASE_URL}profile/nobg/black-`;
 export function initFace(){
   if(typeof document==="undefined")return;
   const w=document.getElementById("avatar-wrap");if(!w)return;

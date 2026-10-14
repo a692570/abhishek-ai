@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   integrations: [react()],
-  site: 'https://a692570.github.io/abhishek-ai',
-  base: '/abhishek-ai',
+  site: 'https://abhisheksharma.si',
+  base: '/',
   server: { host: true, port: 4321 },
 });
