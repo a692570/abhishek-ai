@@ -1,0 +1,134 @@
+---
+name: Abhishek Sharma
+description: Personal publication with writing, software, and reading.
+colors:
+  text: "#292921"
+  text-secondary: "#65645a"
+  bg: "#f8f6ef"
+  surface: "#eeebe0"
+  border: "#d9d7cb"
+  accent: "#9b472c"
+  accent-hover: "#71321f"
+  dark-text: "#ece9df"
+  dark-text-secondary: "#afafa2"
+  dark-bg: "#1b1d1b"
+  dark-surface: "#272b25"
+  dark-border: "#3d4138"
+  dark-accent: "#e7a17d"
+  dark-accent-hover: "#f3b99a"
+typography:
+  display:
+    fontFamily: '"Newsreader Variable", Georgia, serif'
+    fontSize: "clamp(2.8rem, 5.3vw, 4.05rem)"
+    fontWeight: 400
+    lineHeight: 1.08
+    letterSpacing: "-.043em"
+  headline:
+    fontFamily: '"Newsreader Variable", Georgia, serif'
+    fontSize: "2.1rem"
+    fontWeight: 400
+    lineHeight: 1.15
+    letterSpacing: "-.025em"
+  title:
+    fontFamily: '"Newsreader Variable", Georgia, serif'
+    fontSize: "1.65rem"
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "-.02em"
+  body:
+    fontFamily: '"Inter Variable", system-ui, sans-serif'
+    fontSize: "16px"
+    lineHeight: 1.65
+  label:
+    fontFamily: "ui-monospace, SFMono-Regular, Consolas, monospace"
+    fontSize: ".69rem"
+    lineHeight: 1.5
+rounded:
+  surface: "3px"
+  circle: "50%"
+spacing:
+  row-gap: "1.2rem"
+  section: "4.6rem"
+  section-mobile: "3.2rem"
+components:
+  theme-toggle:
+    textColor: "{colors.text}"
+    rounded: "{rounded.circle}"
+    size: "44px"
+  featured-project:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text}"
+    rounded: "{rounded.surface}"
+    padding: "2.2rem 2.5rem"
+---
+
+# Design System: Abhishek Sharma
+
+## Overview
+
+**Creative North Star: "Personal publication"**
+
+The site pairs editorial headings with plain body text and small monospace metadata. Warm paper, dark ink, thin dividers, and restrained rust links keep writing and personal work readable. The supplied portrait and interactive bookshelf provide the personal character.
+
+**Key Characteristics:**
+- Serif headings, sans serif reading text, and monospace dates.
+- A centered content column with open rows and one quiet featured surface.
+- Paired light and dark themes with the same hierarchy.
+
+## Colors
+
+### Primary
+
+Rust identifies links, heading hover states, focus outlines, and small punctuation accents. The lighter dark-theme accent keeps the same role against charcoal. Hover uses the corresponding accent-hover token.
+
+### Neutral
+
+Warm ivory is the light background; charcoal is the dark background. Text and text-secondary distinguish reading content from dates and supporting descriptions. Surface identifies the featured project and fallback panels. Border separates navigation, section headings, and list rows.
+
+**The Theme Pair Rule.** Use the existing semantic CSS properties so every surface follows the active theme.
+
+## Typography
+
+Newsreader Variable sets the name, section headings, article titles, featured project heading, and shelf titles. Inter Variable sets body text, navigation, and ordinary project titles. Both families are self hosted through the layout imports. System monospace is reserved for dates, project metadata, and interaction hints.
+
+The frontmatter records the desktop hierarchy. Section headings reduce to 1.8rem and article titles to 1.55rem at the main mobile breakpoint. The name becomes 2.8rem, then 2.5rem on the narrowest layout. Body copy keeps comfortable leading; supporting descriptions are smaller and use secondary text.
+
+**The Metadata Rule.** Metadata supports its heading. In the featured Bolo block, it follows the project name.
+
+## Layout
+
+The content column is capped at 880px with 1.5rem side gutters. At 650px and below, gutters become 1.25rem, the navigation shortens, and section spacing reduces to the mobile token. At 360px and below, gutters become 1rem.
+
+Desktop writing and career rows share a 108px date column. Writing dates move above their titles on mobile, while career dates retain a narrower 76px column. The introduction pairs its text with a circular portrait; mobile keeps the name and portrait side by side and places introductory copy below them. Book links change from two columns to one.
+
+## Elevation & Depth
+
+Page chrome uses tonal surfaces and thin borders without box shadows. The interactive bookshelf supplies object depth within its own canvas. Its selected-book panel uses a nearly opaque background and an 8px backdrop blur, with a border separating it from the scene.
+
+## Shapes
+
+Open rows and straight dividers carry most content. The featured project has a slight corner radius from the surface token. The portrait and theme control are circular. Preserve the real Bolo app icon and its rounded silhouette.
+
+## Components
+
+- **Navigation:** a Newsreader wordmark, small sans serif section links, and a circular theme button. The button shows a moon to offer dark mode and a sun to offer light mode. Its accessible label follows the same action.
+- **Writing rows:** a date, serif title, supporting description, and destination affordance. The entire row is a link. Hover changes the title to the accent.
+- **Project links:** the featured project uses a tonal surface, serif name, metadata below the name, short copy, and the actual app icon. Ordinary projects use open divided rows and sans serif titles.
+- **Disclosures:** native details and summary controls reveal earlier writing, more projects, the book list, and career history. Summary controls retain a minimum 44px height and a visible open state.
+- **Portrait:** the supplied center image remains the fallback. Direction tracking runs only with a fine pointer and hover support, and stops for reduced motion.
+- **Bookshelf:** the scene loads when visible. A separate HTML book list remains available. The selected-book panel sits at the right on wider screens and moves to the bottom at 620px and below.
+
+Interactive controls use an accent focus outline with a 5px offset. Theme hover transitions last .15s; the shelf panel uses .25s transitions. Reduced-motion preferences suppress CSS transitions and portrait tracking.
+
+## Do's and Don'ts
+
+### Do:
+- Do use semantic theme properties for backgrounds, text, borders, and accents.
+- Do preserve the serif, sans serif, and metadata role separation.
+- Do retain visible keyboard focus and meaningful control labels.
+- Do keep the supplied portrait, actual app icon, and HTML book list available.
+
+### Don't:
+- Don't place project metadata above the featured project heading.
+- Don't replace real personal or project assets with invented product imagery.
+- Don't require portrait motion to access any content.

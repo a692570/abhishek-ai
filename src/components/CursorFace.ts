@@ -1,17 +1,78 @@
-const DIRS=["center","top","top-right","right","bottom-right","bottom","bottom-left","left","top-left"];
-const LB=`${import.meta.env.BASE_URL}profile/nobg/`;const DB=`${import.meta.env.BASE_URL}profile/nobg/black-`;
-export function initFace(){
-  if(typeof document==="undefined")return;
-  const w=document.getElementById("avatar-wrap");if(!w)return;
-  const la=document.querySelector(".avatar-light");const da=document.querySelector(".avatar-dark");
-  if(!la||!da)return;
-  DIRS.forEach(d=>{new Image().src=LB+d+".png";new Image().src=DB+d+".png";});
-  w.style.cursor="pointer";
-  const tg=document.getElementById("theme-toggle");
-  w.addEventListener("click",()=>tg?.click());
-  let cur="center";
-  function cd(x,y){const r=w.getBoundingClientRect();const cx=r.left+r.width/2;const cy=r.top+r.height/2;const dx=x-cx;const dy=y-cy;if(Math.sqrt(dx*dx+dy*dy)<60)return"center";const a=Math.atan2(dy,dx)*180/Math.PI;if(a>=-22.5&&a<22.5)return"right";if(a>=22.5&&a<67.5)return"bottom-right";if(a>=67.5&&a<112.5)return"bottom";if(a>=112.5&&a<157.5)return"bottom-left";if(a>=157.5||a<-157.5)return"left";if(a>=-157.5&&a<-112.5)return"top-left";if(a>=-112.5&&a<-67.5)return"top";if(a>=-67.5&&a<-22.5)return"top-right";return"center";}
-  function sd(d){if(d===cur)return;cur=d;la.src=LB+d+".png";da.src=DB+d+".png";}
-  document.addEventListener("mousemove",e=>sd(cd(e.clientX,e.clientY)));
-  document.addEventListener("mouseleave",()=>sd("center"));
+const ATLAS = `${import.meta.env.BASE_URL}profile/abhishek-directions.webp`;
+const CELLS = [
+  [100, 50], [100, 100], [50, 100], [0, 100],
+  [0, 50], [0, 0], [50, 0], [100, 0],
+];
+const WEDGE = Math.PI / 4;
+
+export function initFace() {
+  const portrait = document.getElementById("avatar-wrap");
+  if (!portrait) return;
+
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const atlas = new Image();
+  let loading: Promise<void> | undefined;
+  let ready = false;
+  let current: number | null = null;
+
+  function show(sector: number | null) {
+    current = sector;
+    const [x, y] = sector === null ? [50, 50] : CELLS[sector];
+    portrait!.style.backgroundPosition = `${x}% ${y}%`;
+  }
+
+  function allowed() {
+    return finePointer.matches && !reducedMotion.matches;
+  }
+
+  async function updatePreference() {
+    show(null);
+    if (!allowed()) {
+      portrait!.classList.remove("is-tracking");
+      return;
+    }
+    if (!loading) {
+      atlas.src = ATLAS;
+      loading = atlas.decode();
+    }
+    try {
+      await loading;
+      ready = true;
+      if (allowed()) {
+        portrait!.style.backgroundImage = `url("${ATLAS}")`;
+        portrait!.classList.add("is-tracking");
+      }
+    } catch {
+      // The real center portrait remains visible if the atlas cannot load.
+      ready = false;
+    }
+  }
+
+  document.addEventListener("pointermove", (event) => {
+    if (!ready || !allowed() || event.pointerType === "touch") return;
+    const bounds = portrait.getBoundingClientRect();
+    const dx = event.clientX - bounds.left - bounds.width / 2;
+    const dy = event.clientY - bounds.top - bounds.height / 2;
+    if (Math.hypot(dx, dy) < bounds.width / 2) {
+      show(null);
+      return;
+    }
+    const angle = Math.atan2(dy, dx);
+    if (current !== null) {
+      const distance = Math.abs(Math.atan2(
+        Math.sin(angle - current * WEDGE),
+        Math.cos(angle - current * WEDGE),
+      ));
+      // A small overlap keeps the head still near a direction boundary.
+      if (distance < WEDGE / 2 + 0.08) return;
+    }
+    const sector = (Math.round(angle / WEDGE) + 8) % 8;
+    if (sector !== current) show(sector);
+  });
+  document.documentElement.addEventListener("pointerleave", () => show(null));
+  window.addEventListener("blur", () => show(null));
+  finePointer.addEventListener("change", updatePreference);
+  reducedMotion.addEventListener("change", updatePreference);
+  void updatePreference();
 }

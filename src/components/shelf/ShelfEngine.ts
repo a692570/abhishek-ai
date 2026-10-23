@@ -301,10 +301,12 @@ export class ShelfEngine {
     key.shadow.camera.near = 0.5;
     key.shadow.camera.far = 22;
     key.shadow.bias = -0.0005;
+    key.name = "shelfKeyLight";
     this.scene.add(key);
 
     const rim = new THREE.DirectionalLight(this.isDarkMode ? "#7a8aB0" : "#c8d5e5", this.isDarkMode ? 3.5 : 2.1);
     rim.position.set(5, 3, -4);
+    rim.name = "shelfRimLight";
     this.scene.add(rim);
 
     const warmBounce = new THREE.PointLight(this.isDarkMode ? "#e89060" : "#d79b72", this.isDarkMode ? 3.5 : 1.2, 10, 2);
@@ -319,6 +321,7 @@ export class ShelfEngine {
         metalness: 0,
       }),
     );
+    wall.name = "shelfWall";
     wall.position.set(0, 5, -3.2);
     wall.receiveShadow = true;
     this.scene.add(wall);
@@ -331,6 +334,7 @@ export class ShelfEngine {
         metalness: 0,
       }),
     );
+    ground.name = "shelfGround";
     ground.rotation.x = -Math.PI / 2;
     ground.position.y = -0.24;
     ground.receiveShadow = true;
@@ -1492,13 +1496,34 @@ export class ShelfEngine {
     };
   }
 
-    refreshTheme() {
-    const wasDark = this.isDarkMode;
-    this.isDarkMode = document.documentElement.dataset.theme === 'dark';
-    if (wasDark === this.isDarkMode) return;
-    if (this.scene.fog) {
-      this.scene.fog.color.set(this.isDarkMode ? '#0a0a0a' : '#eee8db');
+  refreshTheme() {
+    const dark = document.documentElement.dataset.theme === "dark";
+    if (this.isDarkMode === dark) return;
+    this.isDarkMode = dark;
+    if (this.scene.fog instanceof THREE.Fog) {
+      this.scene.fog.color.set(dark ? "#0a0a0a" : "#eee8db");
+      this.scene.fog.near = dark ? 6 : 10;
+      this.scene.fog.far = dark ? 20 : 26;
     }
+    this.scene.traverse((object) => {
+      if (object instanceof THREE.HemisphereLight) {
+        object.color.set(dark ? "#2a2a35" : "#fff8ea");
+        object.groundColor.set(dark ? "#0a0a0a" : "#6e5848");
+        object.intensity = dark ? 0.4 : 2.4;
+      } else if (object instanceof THREE.DirectionalLight) {
+        const key = object.name === "shelfKeyLight";
+        object.color.set(key ? (dark ? "#fff8e8" : "#fff6e7") : (dark ? "#7a8aB0" : "#c8d5e5"));
+        object.intensity = key ? (dark ? 5.5 : 4.6) : (dark ? 3.5 : 2.1);
+      } else if (object instanceof THREE.PointLight) {
+        object.color.set(dark ? "#e89060" : "#d79b72");
+        object.intensity = dark ? 3.5 : 1.2;
+      } else if (object instanceof THREE.Mesh && object.material instanceof THREE.MeshStandardMaterial) {
+        if (object.name === "shelfWall") object.material.color.set(dark ? "#0a0a0a" : "#eee8db");
+        if (object.name === "shelfGround") object.material.color.set(dark ? "#080808" : "#e7dfd0");
+        if (object.name === "continuousShelf") object.material.color.copy(dark ? shelfColorDark : shelfColor);
+        if (object.name === "pageBlock") object.material.color.copy(dark ? pageColorDark : pageColor);
+      }
+    });
   }
 
   dispose() {

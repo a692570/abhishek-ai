@@ -5,13 +5,12 @@ import { ShelfEngine, type ShelfMode } from "./shelf/ShelfEngine";
 export default function BookShelf() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<ShelfEngine | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [mode, setMode] = useState<ShelfMode>("browse");
   const [ready, setReady] = useState(false);
-  const [status, setStatus] = useState("assembling volumes");
+  const [status, setStatus] = useState("Loading the bookshelf");
+  const [failed, setFailed] = useState(false);
 
-  const activeBook = catalog[activeIndex];
   const selectedBook = selectedIndex !== null ? catalog[selectedIndex] : null;
   const isFocused = mode !== "browse";
 
@@ -22,24 +21,32 @@ export default function BookShelf() {
       if (!canvasRef.current) return;
       await document.fonts.ready;
       if (cancelled || !canvasRef.current) return;
-      engine = new ShelfEngine(canvasRef.current, catalog, {
-        onActiveIndex: setActiveIndex,
-        onMode: (m, i) => { setMode(m); setSelectedIndex(i); },
-        onStatus: setStatus,
-        onReady: () => setReady(true),
-      });
-      engineRef.current = engine;
+      try {
+        engine = new ShelfEngine(canvasRef.current, catalog, {
+          onActiveIndex: () => {},
+          onMode: (nextMode, index) => { setMode(nextMode); setSelectedIndex(index); },
+          onStatus: setStatus,
+          onReady: () => setReady(true),
+        });
+        engineRef.current = engine;
+      } catch {
+        if (!cancelled) setFailed(true);
+      }
     }
     void start();
     const themeObserver = new MutationObserver(() => { engine?.refreshTheme(); });
-      themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-      return () => { cancelled = true; themeObserver.disconnect(); engine?.dispose(); engineRef.current = null; };
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => {
+      cancelled = true;
+      themeObserver.disconnect();
+      engine?.dispose();
+      engineRef.current = null;
+    };
   }, []);
 
-  function focusBook(i: number) { engineRef.current?.focusBook(i); }
-  function nextBook() { engineRef.current?.browseBy(1); }
-  function prevBook() { engineRef.current?.browseBy(-1); }
   function backToShelf() { engineRef.current?.returnToShelf(); }
+
+  if (failed) return <p className="shelf-fallback">The 3D shelf is unavailable in this browser. You can browse every title in the book list below.</p>;
 
   return (
     <div className={"shelf-experience" + (ready ? " is-ready is-active" : "") + (isFocused ? " is-focused" : " is-browsing")}>
@@ -47,7 +54,7 @@ export default function BookShelf() {
         ref={canvasRef}
         className="shelf-canvas"
         tabIndex={0}
-        aria-label="Interactive 3D shelf of books. Drag to browse."
+        aria-label="Interactive 3D shelf of books. Drag to browse. Use arrow keys to move, Enter to open a book, and Escape to close it."
       />
       {isFocused && selectedBook && (
         <aside className="shelf-details">
@@ -61,7 +68,7 @@ export default function BookShelf() {
           <p className="shelf-details-hint">drag to orbit - scroll to zoom - esc to close</p>
         </aside>
       )}
-      {!ready && <div className="shelf-loading"><span>{status}...</span></div>}
+      {!ready && <div className="shelf-loading" role="status"><span>{status}…</span></div>}
     </div>
   );
 }

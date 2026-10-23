@@ -1,6 +1,9 @@
 ---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/newsreader";
 export interface Props { title: string; description?: string }
-const { title, description = "Abhishek Sharma" } = Astro.props
+const { title, description = "Abhishek Sharma writes about AI, builds useful software, and works on voice AI at Telnyx." } = Astro.props;
+const canonical = new URL(Astro.url.pathname, "https://abhisheksharma.si");
 ---
 <!doctype html>
 <html lang="en">
@@ -8,22 +11,25 @@ const { title, description = "Abhishek Sharma" } = Astro.props
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content={description} />
-<link rel="canonical" href="https://abhishek.ai" />
+<link rel="canonical" href={canonical} />
 <meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={`${import.meta.env.BASE_URL}og.png`} />
-<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:image" content="https://abhisheksharma.si/profile/abhishek-center.webp" />
+<meta property="og:image:alt" content="Abhishek Sharma" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@abhiclawd" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Sans:wght@400;500;600&display=swap" />
-<link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}favicon.png`} />
+<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
 <title>{title}</title>
 <script is:inline>
-(function(){var s=localStorage.getItem("theme");var m=window.matchMedia("(prefers-color-scheme: dark)");var t=s||(m.matches?"dark":"light");document.documentElement.dataset.theme=t;})();
+(function () {
+  var preference;
+  try { preference = localStorage.getItem("theme"); } catch {}
+  document.documentElement.dataset.theme = preference === "light" || preference === "dark"
+    ? preference : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+})();
 </script>
 </head>
-<body>
-<slot />
-</body>
+<body><slot /></body>
 </html>

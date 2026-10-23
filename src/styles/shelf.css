@@ -1,0 +1,26 @@
+.shelf-experience { display: block; position: relative; height: 30rem; margin: .5rem 0 1rem; }
+.shelf-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: pan-y; }
+.shelf-canvas.is-dragging { cursor: grabbing; }
+.shelf-details { position: absolute; top: 0; right: 0; bottom: 0; width: min(320px, 46%); padding: 1.25rem; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(8px); border-left: 1px solid var(--border); overflow-y: auto; opacity: 0; visibility: hidden; transform: translateX(16px); transition: opacity .25s ease, transform .25s ease, visibility .25s; z-index: 3; display: flex; flex-direction: column; gap: .5rem; }
+.is-focused .shelf-details { opacity: 1; visibility: visible; transform: none; }
+.shelf-back { align-self: flex-start; font-size: .8rem; color: var(--accent); background: none; border: none; padding: .4rem 0; cursor: pointer; margin-bottom: .3rem; }
+.shelf-back:hover { color: var(--accent-hover); }
+.shelf-details-title { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; }
+.shelf-details-author { font-size: .8rem; color: var(--text-secondary); }
+.shelf-details-desc { font-size: .85rem; color: var(--text-secondary); line-height: 1.65; }
+.shelf-details-quote { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.5; margin-top: .6rem; }
+.shelf-details-quoteby { font-size: .7rem; color: var(--text-secondary); }
+.shelf-details-link { font-size: .85rem; padding-block: .5rem; }
+.shelf-details-link::after { content: " ↗"; }
+.shelf-details-hint { margin-top: auto; font: .6rem/1.6 var(--font-mono); color: var(--text-secondary); }
+.shelf-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: .85rem; color: var(--text-secondary); pointer-events: none; }
+.is-ready .shelf-loading { opacity: 0; visibility: hidden; }
+.shelf-fallback { padding: 3rem 1.5rem; background: var(--surface); font-size: .9rem; color: var(--text-secondary); margin: 1rem 0 1.5rem; }
+@media (max-width: 620px) {
+  .shelf-experience { height: 26rem; }
+  .shelf-details { inset: auto 0 0; width: auto; max-height: 72%; border-left: none; border-top: 1px solid var(--border); transform: translateY(16px); gap: .35rem; padding: .9rem 1rem .75rem; }
+  .is-focused .shelf-details { transform: none; }
+  .shelf-details-hint { display: none; }
+  .shelf-details-title { font-size: 1.25rem; }
+  .shelf-details-desc { font-size: .8rem; }
+}

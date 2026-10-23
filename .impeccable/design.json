@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T08:26:56.777249+00:00",
+  "title": "Design System: Abhishek Sharma",
+  "extensions": {
+    "colorMeta": {
+      "text": {
+        "role": "neutral",
+        "displayName": "Text",
+        "tonalRamp": [
+          "oklch(15.0% 0.0142 107.3)",
+          "oklch(26.4% 0.0142 107.3)",
+          "oklch(37.9% 0.0142 107.3)",
+          "oklch(49.3% 0.0142 107.3)",
+          "oklch(60.7% 0.0142 107.3)",
+          "oklch(72.1% 0.0142 107.3)",
+          "oklch(83.6% 0.0142 107.3)",
+          "oklch(95.0% 0.0142 107.3)"
+        ]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Text secondary",
+        "tonalRamp": [
+          "oklch(15.0% 0.0155 102.3)",
+          "oklch(26.4% 0.0155 102.3)",
+          "oklch(37.9% 0.0155 102.3)",
+          "oklch(49.3% 0.0155 102.3)",
+          "oklch(60.7% 0.0155 102.3)",
+          "oklch(72.1% 0.0155 102.3)",
+          "oklch(83.6% 0.0155 102.3)",
+          "oklch(95.0% 0.0155 102.3)"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Bg",
+        "tonalRamp": [
+          "oklch(15.0% 0.0095 93.6)",
+          "oklch(26.4% 0.0095 93.6)",
+          "oklch(37.9% 0.0095 93.6)",
+          "oklch(49.3% 0.0095 93.6)",
+          "oklch(60.7% 0.0095 93.6)",
+          "oklch(72.1% 0.0095 93.6)",
+          "oklch(83.6% 0.0095 93.6)",
+          "oklch(95.0% 0.0095 93.6)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "oklch(15.0% 0.0150 94.2)",
+          "oklch(26.4% 0.0150 94.2)",
+          "oklch(37.9% 0.0150 94.2)",
+          "oklch(49.3% 0.0150 94.2)",
+          "oklch(60.7% 0.0150 94.2)",
+          "oklch(72.1% 0.0150 94.2)",
+          "oklch(83.6% 0.0150 94.2)",
+          "oklch(95.0% 0.0150 94.2)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Border",
+        "tonalRamp": [
+          "oklch(15.0% 0.0164 99.0)",
+          "oklch(26.4% 0.0164 99.0)",
+          "oklch(37.9% 0.0164 99.0)",
+          "oklch(49.3% 0.0164 99.0)",
+          "oklch(60.7% 0.0164 99.0)",
+          "oklch(72.1% 0.0164 99.0)",
+          "oklch(83.6% 0.0164 99.0)",
+          "oklch(95.0% 0.0164 99.0)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Accent",
+        "tonalRamp": [
+          "oklch(15.0% 0.1196 38.3)",
+          "oklch(26.4% 0.1196 38.3)",
+          "oklch(37.9% 0.1196 38.3)",
+          "oklch(49.3% 0.1196 38.3)",
+          "oklch(60.7% 0.1196 38.3)",
+          "oklch(72.1% 0.1196 38.3)",
+          "oklch(83.6% 0.1196 38.3)",
+          "oklch(95.0% 0.1196 38.3)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Accent hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.0945 37.5)",
+          "oklch(26.4% 0.0945 37.5)",
+          "oklch(37.9% 0.0945 37.5)",
+          "oklch(49.3% 0.0945 37.5)",
+          "oklch(60.7% 0.0945 37.5)",
+          "oklch(72.1% 0.0945 37.5)",
+          "oklch(83.6% 0.0945 37.5)",
+          "oklch(95.0% 0.0945 37.5)"
+        ]
+      },
+      "dark-text": {
+        "role": "neutral",
+        "displayName": "Dark text",
+        "tonalRamp": [
+          "oklch(15.0% 0.0137 93.0)",
+          "oklch(26.4% 0.0137 93.0)",
+          "oklch(37.9% 0.0137 93.0)",
+          "oklch(49.3% 0.0137 93.0)",
+          "oklch(60.7% 0.0137 93.0)",
+          "oklch(72.1% 0.0137 93.0)",
+          "oklch(83.6% 0.0137 93.0)",
+          "oklch(95.0% 0.0137 93.0)"
+        ]
+      },
+      "dark-text-secondary": {
+        "role": "neutral",
+        "displayName": "Dark text secondary",
+        "tonalRamp": [
+          "oklch(15.0% 0.0182 106.8)",
+          "oklch(26.4% 0.0182 106.8)",
+          "oklch(37.9% 0.0182 106.8)",
+          "oklch(49.3% 0.0182 106.8)",
+          "oklch(60.7% 0.0182 106.8)",
+          "oklch(72.1% 0.0182 106.8)",
+          "oklch(83.6% 0.0182 106.8)",
+          "oklch(95.0% 0.0182 106.8)"
+        ]
+      },
+      "dark-bg": {
+        "role": "neutral",
+        "displayName": "Dark bg",
+        "tonalRamp": [
+          "oklch(15.0% 0.0048 145.4)",
+          "oklch(26.4% 0.0048 145.4)",
+          "oklch(37.9% 0.0048 145.4)",
+          "oklch(49.3% 0.0048 145.4)",
+          "oklch(60.7% 0.0048 145.4)",
+          "oklch(72.1% 0.0048 145.4)",
+          "oklch(83.6% 0.0048 145.4)",
+          "oklch(95.0% 0.0048 145.4)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark surface",
+        "tonalRamp": [
+          "oklch(15.0% 0.0122 135.0)",
+          "oklch(26.4% 0.0122 135.0)",
+          "oklch(37.9% 0.0122 135.0)",
+          "oklch(49.3% 0.0122 135.0)",
+          "oklch(60.7% 0.0122 135.0)",
+          "oklch(72.1% 0.0122 135.0)",
+          "oklch(83.6% 0.0122 135.0)",
+          "oklch(95.0% 0.0122 135.0)"
+        ]
+      },
+      "dark-border": {
+        "role": "neutral",
+        "displayName": "Dark border",
+        "tonalRamp": [
+          "oklch(15.0% 0.0160 126.8)",
+          "oklch(26.4% 0.0160 126.8)",
+          "oklch(37.9% 0.0160 126.8)",
+          "oklch(49.3% 0.0160 126.8)",
+          "oklch(60.7% 0.0160 126.8)",
+          "oklch(72.1% 0.0160 126.8)",
+          "oklch(83.6% 0.0160 126.8)",
+          "oklch(95.0% 0.0160 126.8)"
+        ]
+      },
+      "dark-accent": {
+        "role": "primary",
+        "displayName": "Dark accent",
+        "tonalRamp": [
+          "oklch(15.0% 0.0970 48.0)",
+          "oklch(26.4% 0.0970 48.0)",
+          "oklch(37.9% 0.0970 48.0)",
+          "oklch(49.3% 0.0970 48.0)",
+          "oklch(60.7% 0.0970 48.0)",
+          "oklch(72.1% 0.0970 48.0)",
+          "oklch(83.6% 0.0970 48.0)",
+          "oklch(95.0% 0.0970 48.0)"
+        ]
+      },
+      "dark-accent-hover": {
+        "role": "primary",
+        "displayName": "Dark accent hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.0795 49.4)",
+          "oklch(26.4% 0.0795 49.4)",
+          "oklch(37.9% 0.0795 49.4)",
+          "oklch(49.3% 0.0795 49.4)",
+          "oklch(60.7% 0.0795 49.4)",
+          "oklch(72.1% 0.0795 49.4)",
+          "oklch(83.6% 0.0795 49.4)",
+          "oklch(95.0% 0.0795 49.4)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Name",
+        "purpose": "Introductory name."
+      },
+      "headline": {
+        "displayName": "Section heading",
+        "purpose": "Main section headings."
+      },
+      "title": {
+        "displayName": "Article title",
+        "purpose": "Writing row titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text and interface copy."
+      },
+      "label": {
+        "displayName": "Metadata",
+        "purpose": "Dates and supporting labels."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "theme-hover",
+        "value": ".15s",
+        "purpose": "Background and border changes on the theme button."
+      },
+      {
+        "name": "shelf-panel",
+        "value": ".25s ease",
+        "purpose": "Shelf panel opacity and translation."
+      },
+      {
+        "name": "reduced-motion",
+        "value": ".01ms",
+        "purpose": "CSS animation and transition durations when reduced motion is requested."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "main-mobile",
+        "value": "650px"
+      },
+      {
+        "name": "shelf-mobile",
+        "value": "620px"
+      },
+      {
+        "name": "narrow",
+        "value": "360px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Theme toggle",
+      "kind": "button",
+      "refersTo": "theme-toggle",
+      "description": "Circular control showing the available destination theme.",
+      "html": "<button class=\"ds-theme\" aria-label=\"Switch to dark theme\"><svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20.5 13.1A8.6 8.6 0 0 1 10.9 3.5a8.6 8.6 0 1 0 9.6 9.6Z\"/></svg></button>",
+      "css": ".ds-theme { width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--border); color:var(--text); background:transparent; border-radius:50%; cursor:pointer; transition:background .15s,border-color .15s; } .ds-theme:hover { background:var(--surface); border-color:var(--text-secondary); } .ds-theme:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; }"
+    },
+    {
+      "name": "Section navigation",
+      "kind": "nav",
+      "description": "Small sans serif links to the three primary sections.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Sections\"><a href=\"#writing\">Writing</a><a href=\"#projects\">Building</a><a href=\"#bookshelf\">Reading</a></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:1.8rem; font-family:var(--font-sans); } .ds-nav a { color:var(--text-secondary); font-size:.84rem; padding-block:.7rem; text-decoration:none; } .ds-nav a:hover { color:var(--accent); } .ds-nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; }"
+    },
+    {
+      "name": "Writing row",
+      "kind": "custom",
+      "description": "Whole-row article link with a date column and serif title.",
+      "html": "<a class=\"ds-writing\" href=\"https://abhismixtape.substack.com/p/loneliness-optimized\"><time datetime=\"2026-02-15\">Feb 15, 2026</time><div><h3>Loneliness, optimized</h3><p>On loneliness, forced optimism, and what the feed does with other people’s pain.</p></div></a>",
+      "css": ".ds-writing { display:grid; grid-template-columns:108px minmax(0,1fr); gap:1.2rem; padding:1.6rem 0; border-bottom:1px solid var(--border); color:var(--text); text-decoration:none; } .ds-writing time { font:.69rem/1.5 var(--font-mono); color:var(--text-secondary); padding-top:.5rem; } .ds-writing h3 { font:400 1.65rem/1.2 var(--font-display); letter-spacing:-.02em; margin:0 0 .4rem; } .ds-writing p { margin:0; font:.87rem/1.65 var(--font-sans); color:var(--text-secondary); } .ds-writing:hover h3 { color:var(--accent); } .ds-writing:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; } @media(max-width:650px) { .ds-writing { grid-template-columns:1fr; gap:.45rem; } .ds-writing time { padding:0; } .ds-writing h3 { font-size:1.55rem; } }"
+    },
+    {
+      "name": "Featured project",
+      "kind": "card",
+      "refersTo": "featured-project",
+      "description": "Tonal project link with metadata beneath its name. The site also includes the real Bolo icon.",
+      "html": "<a class=\"ds-featured\" href=\"https://github.com/a692570/bolo\"><h3>Bolo</h3><span>Voice dictation · macOS</span><p>Hold a key to dictate into any app.</p></a>",
+      "css": ".ds-featured { display:block; padding:2.2rem 2.5rem; background:var(--surface); border-radius:3px; color:var(--text); text-decoration:none; } .ds-featured h3 { font:400 3rem/1.15 var(--font-display); letter-spacing:-.035em; margin:0 0 .3rem; } .ds-featured span { display:block; margin-bottom:.85rem; font:.65rem/1.5 var(--font-mono); color:var(--text-secondary); } .ds-featured p { font:1.05rem/1.6 var(--font-sans); margin:0; } .ds-featured:hover h3 { color:var(--accent); } .ds-featured:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; }"
+    },
+    {
+      "name": "Disclosure",
+      "kind": "custom",
+      "description": "Native disclosure for secondary lists.",
+      "html": "<details class=\"ds-disclosure\"><summary>Earlier notes</summary><a href=\"https://abhismixtape.substack.com/p/introducing-solo\">Introducing Solo</a></details>",
+      "css": ".ds-disclosure { font-family:var(--font-sans); } .ds-disclosure summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:.65rem; min-height:44px; color:var(--text-secondary); font-size:.8rem; } .ds-disclosure summary::-webkit-details-marker { display:none; } .ds-disclosure summary::before { content:\"+\"; font:1.05rem/1 var(--font-mono); color:var(--accent); } .ds-disclosure[open] summary::before { content:\"−\"; } .ds-disclosure summary:hover { color:var(--text); } .ds-disclosure summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; } .ds-disclosure a { display:inline-block; padding:.5rem 0 .75rem 1.3rem; font-size:.85rem; color:var(--text); } .ds-disclosure a:hover { color:var(--accent); } .ds-disclosure a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Personal publication",
+    "overview": "The site pairs editorial headings with plain body text and small monospace metadata. Warm paper, dark ink, thin dividers, and restrained rust links keep writing and personal work readable. The supplied portrait and interactive bookshelf provide the personal character.",
+    "keyCharacteristics": [
+      "Serif headings, sans serif reading text, and monospace dates.",
+      "A centered content column with open rows and one quiet featured surface.",
+      "Paired light and dark themes with the same hierarchy."
+    ],
+    "rules": [
+      {
+        "name": "The Theme Pair Rule",
+        "body": "Use the existing semantic CSS properties so every surface follows the active theme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Metadata Rule",
+        "body": "Metadata supports its heading. In the featured Bolo block, it follows the project name.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do use semantic theme properties for backgrounds, text, borders, and accents.",
+      "Do preserve the serif, sans serif, and metadata role separation.",
+      "Do retain visible keyboard focus and meaningful control labels.",
+      "Do keep the supplied portrait, actual app icon, and HTML book list available."
+    ],
+    "donts": [
+      "Don't place project metadata above the featured project heading.",
+      "Don't replace real personal or project assets with invented product imagery.",
+      "Don't require portrait motion to access any content."
+    ]
+  }
+}
