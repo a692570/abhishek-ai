@@ -1,9 +1,10 @@
+@font-face { font-family: "Geist Mono"; src: url("/fonts/GeistMono-Variable.ttf") format("truetype"); font-style: normal; font-weight: 100 900; font-display: swap; }
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
 html {
-  --font-display: "Newsreader Variable", Georgia, serif;
-  --font-sans: "Inter Variable", system-ui, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --font-display: "Geist Mono", ui-monospace, monospace;
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-display);
   --text: #292921;
   --text-secondary: #65645a;
   --bg: #f8f6ef;

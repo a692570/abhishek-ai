@@ -18,29 +18,29 @@ colors:
   dark-accent-hover: "#f3b99a"
 typography:
   display:
-    fontFamily: '"Newsreader Variable", Georgia, serif'
+    fontFamily: '"Geist Mono", ui-monospace, monospace'
     fontSize: "clamp(2.8rem, 5.3vw, 4.05rem)"
     fontWeight: 400
     lineHeight: 1.08
     letterSpacing: "-.043em"
   headline:
-    fontFamily: '"Newsreader Variable", Georgia, serif'
+    fontFamily: '"Geist Mono", ui-monospace, monospace'
     fontSize: "2.1rem"
     fontWeight: 400
     lineHeight: 1.15
     letterSpacing: "-.025em"
   title:
-    fontFamily: '"Newsreader Variable", Georgia, serif'
+    fontFamily: '"Geist Mono", ui-monospace, monospace'
     fontSize: "1.65rem"
     fontWeight: 400
     lineHeight: 1.2
     letterSpacing: "-.02em"
   body:
-    fontFamily: '"Inter Variable", system-ui, sans-serif'
+    fontFamily: '"Geist Mono", ui-monospace, monospace'
     fontSize: "16px"
     lineHeight: 1.65
   label:
-    fontFamily: "ui-monospace, SFMono-Regular, Consolas, monospace"
+    fontFamily: '"Geist Mono", ui-monospace, monospace'
     fontSize: ".69rem"
     lineHeight: 1.5
 rounded:
@@ -68,10 +68,10 @@ components:
 
 **Creative North Star: "Personal publication"**
 
-The site pairs editorial headings with plain body text and small monospace metadata. Warm paper, dark ink, thin dividers, and restrained rust links keep writing and personal work readable. The supplied portrait and interactive bookshelf provide the personal character.
+The site uses Geist Mono throughout, with scale, weight, and spacing separating headings, body text, and metadata. Warm paper, dark ink, thin dividers, and restrained rust links keep writing and personal work readable. The supplied portrait and interactive bookshelf provide the personal character.
 
 **Key Characteristics:**
-- Serif headings, sans serif reading text, and monospace dates.
+- Geist Mono headings, reading text, and dates, following Abhishek’s personal font preference.
 - A centered content column with open rows and one quiet featured surface.
 - Paired light and dark themes with the same hierarchy.
 
@@ -89,7 +89,7 @@ Warm ivory is the light background; charcoal is the dark background. Text and te
 
 ## Typography
 
-Newsreader Variable sets the name, section headings, article titles, featured project heading, and shelf titles. Inter Variable sets body text, navigation, and ordinary project titles. Both families are self hosted through the layout imports. System monospace is reserved for dates, project metadata, and interaction hints.
+Geist Mono sets all site text, including headings, body text, navigation, metadata, and generated shelf text. The variable font is self hosted in public/fonts and preloaded by the layout. Size, weight, leading, and spacing distinguish text roles.
 
 The frontmatter records the desktop hierarchy. Section headings reduce to 1.8rem and article titles to 1.55rem at the main mobile breakpoint. The name becomes 2.8rem, then 2.5rem on the narrowest layout. Body copy keeps comfortable leading; supporting descriptions are smaller and use secondary text.
 
@@ -111,14 +111,14 @@ Open rows and straight dividers carry most content. The featured project has a s
 
 ## Components
 
-- **Navigation:** a Newsreader wordmark, small sans serif section links, and a circular theme button. The button shows a moon to offer dark mode and a sun to offer light mode. Its accessible label follows the same action.
-- **Writing rows:** a date, serif title, supporting description, and destination affordance. The entire row is a link. Hover changes the title to the accent.
-- **Project links:** the featured project uses a tonal surface, serif name, metadata below the name, short copy, and the actual app icon. Ordinary projects use open divided rows and sans serif titles.
+- **Navigation:** a Geist Mono wordmark, compact section links, and a circular theme button. The button shows a moon to offer dark mode and a sun to offer light mode. Its accessible label follows the same action.
+- **Writing rows:** a date, title, supporting description, and destination affordance. The entire row is a link. Hover changes the title to the accent.
+- **Project links:** the featured project uses a tonal surface, name, metadata below the name, short copy, and the actual app icon. Ordinary projects use open divided rows and sans titles.
 - **Disclosures:** native details and summary controls reveal earlier writing, more projects, the book list, and career history. Summary controls retain a minimum 44px height and a visible open state.
 - **Portrait:** the supplied center image remains the fallback. Direction tracking runs only with a fine pointer and hover support, and stops for reduced motion.
 - **Bookshelf:** the scene loads when visible. One sticky control row provides previous and next buttons, the current position, and an open or return action. Notes sit at the right on wider screens and flow below the canvas when the shelf is narrower than 760px. The title picker opens the book details; Goodreads remains a separate destination. Without JavaScript, the page provides Goodreads links. Without WebGL, the picker still opens book details.
 - **Reading history:** Goodreads supplies the read list, ratings, recorded dates, public reviews, and cover URLs. Twelve recent additions appear in 3D. A separate disclosure contains the complete history, with title and author search, a result count, and batches of 24 rows. Without JavaScript, every row remains available. Rows use the existing .9rem title, .8rem author, and .68rem metadata scale; .75rem supports the source and results text.
-- **Shelf type:** shelf titles use 1.5rem Newsreader. Notes use .9rem Inter, controls and author text .8rem, compact actions .75rem, and fallback text .85rem. These component sizes keep the twelve-book navigator compact and follow the existing supporting-text scale.
+- **Shelf type:** shelf titles use 1.5rem Geist Mono. Notes use .9rem Geist Mono, controls and author text .8rem, compact actions .75rem, and fallback text .85rem. These component sizes keep the twelve-book navigator compact and follow the existing supporting-text scale.
 
 Interactive controls use an accent focus outline with a 5px offset. Theme hover transitions last .15s. The shelf retains its 3D focus and return motion; notes appear with the selected book. Reduced-motion preferences suppress CSS transitions and portrait tracking.
 
@@ -126,7 +126,7 @@ Interactive controls use an accent focus outline with a 5px offset. Theme hover 
 
 ### Do:
 - Do use semantic theme properties for backgrounds, text, borders, and accents.
-- Do preserve the serif, sans serif, and metadata role separation.
+- Do preserve the heading, body, and metadata role separation.
 - Do retain visible keyboard focus and meaningful control labels.
 - Do keep the supplied portrait, actual app icon, and HTML book list available.
 
