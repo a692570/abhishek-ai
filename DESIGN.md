@@ -103,7 +103,7 @@ Desktop writing and career rows share a 108px date column. Writing dates move ab
 
 ## Elevation & Depth
 
-Page chrome uses tonal surfaces and thin borders without box shadows. The interactive bookshelf supplies object depth within its own canvas. Its selected-book panel uses a nearly opaque background and an 8px backdrop blur, with a border separating it from the scene.
+Page chrome uses tonal surfaces and thin borders without box shadows. The interactive bookshelf supplies object depth within its own canvas. Its selected-book panel uses a nearly opaque background and an 8px backdrop blur on wider screens, with a border separating it from the scene. Compact layouts place the notes below the canvas on the page background.
 
 ## Shapes
 
@@ -116,9 +116,10 @@ Open rows and straight dividers carry most content. The featured project has a s
 - **Project links:** the featured project uses a tonal surface, serif name, metadata below the name, short copy, and the actual app icon. Ordinary projects use open divided rows and sans serif titles.
 - **Disclosures:** native details and summary controls reveal earlier writing, more projects, the book list, and career history. Summary controls retain a minimum 44px height and a visible open state.
 - **Portrait:** the supplied center image remains the fallback. Direction tracking runs only with a fine pointer and hover support, and stops for reduced motion.
-- **Bookshelf:** the scene loads when visible. A separate HTML book list remains available. The selected-book panel sits at the right on wider screens and moves to the bottom at 620px and below.
+- **Bookshelf:** the scene loads when visible. One sticky control row provides previous and next buttons, the current position, and an open or return action. Notes sit at the right on wider screens and flow below the canvas when the shelf is narrower than 760px. The title picker opens the notes; Goodreads remains a separate destination. Without JavaScript, the page provides Goodreads links. Without WebGL, the picker still opens the notes.
+- **Shelf type:** shelf titles use 1.5rem Newsreader. Notes use .9rem Inter, controls and author text .8rem, compact actions .75rem, and fallback text .85rem. These component sizes keep the twelve-book navigator compact and follow the existing supporting-text scale.
 
-Interactive controls use an accent focus outline with a 5px offset. Theme hover transitions last .15s; the shelf panel uses .25s transitions. Reduced-motion preferences suppress CSS transitions and portrait tracking.
+Interactive controls use an accent focus outline with a 5px offset. Theme hover transitions last .15s. The shelf retains its 3D focus and return motion; notes appear with the selected book. Reduced-motion preferences suppress CSS transitions and portrait tracking.
 
 ## Do's and Don'ts
 

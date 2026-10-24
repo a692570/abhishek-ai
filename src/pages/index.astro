@@ -70,9 +70,7 @@ const moreProjects = [
     <section id="bookshelf" aria-labelledby="bookshelf-title">
       <div class="section-heading"><h2 id="bookshelf-title">Off the screen</h2><span class="section-aside">On my bookshelf</span></div>
       <p class="section-intro">A few books that have stayed with me. Pick one up and have a look.</p>
-      <div class="bookshelf-frame"><BookShelf client:visible /><noscript><p>The interactive shelf needs JavaScript. All the books are listed below.</p></noscript></div>
-      <p class="shelf-instructions">Drag to browse · Select a book to open it<span> · Arrow keys work, too</span></p>
-      <details class="book-list-details"><summary>Browse the book list</summary><ul class="book-list">{catalog.map(book => <li><a href={book.url}>{book.shortTitle}<span>{book.author}</span></a></li>)}</ul></details>
+      <div class="bookshelf-frame"><BookShelf client:visible /><noscript><style is:inline>.shelf-experience { display: none; }</style><p>The interactive shelf needs JavaScript. Find every title on Goodreads below.</p><ul class="book-list">{catalog.map(book => <li><a href={book.url}>{book.shortTitle}<span>{book.author}</span></a></li>)}</ul></noscript></div>
     </section>
     <details id="career" class="career-section"><summary><h2>The work so far</h2><span class="career-summary">A short history</span></summary>
       <div class="career-list">
@@ -88,7 +86,7 @@ const moreProjects = [
   </main>
   <footer class="site-footer">
     <div><h2>Say hello.</h2><p>Especially if you’re building something you wish existed.</p></div>
-    <div class="footer-links"><a href="mailto:abhisheksharma@telnyx.com">Email <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/absheksharma">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://twitter.com/abhiclawd">X <span aria-hidden="true">↗</span></a><a href="https://abhismixtape.substack.com">Substack <span aria-hidden="true">↗</span></a></div>
+    <div class="footer-links"><a href="mailto:abhisheksharma@telnyx.com">Email <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/absheksharma">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://x.com/clawdtalk">X <span aria-hidden="true">↗</span></a><a href="https://abhismixtape.substack.com">Substack <span aria-hidden="true">↗</span></a></div>
     <a class="back-top" href="#">Back to top ↑</a>
   </footer>
 </div>

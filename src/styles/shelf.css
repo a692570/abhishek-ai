@@ -1,26 +1,40 @@
-.shelf-experience { display: block; position: relative; height: 30rem; margin: .5rem 0 1rem; }
-.shelf-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: pan-y; }
+.shelf-experience { position: relative; margin: .5rem 0 1rem; container-type: inline-size; }
+.shelf-toolbar { position: sticky; top: 0; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; padding-block: .4rem; border-bottom: 1px solid var(--border); background: var(--bg); }
+.shelf-navigation { display: flex; align-items: center; gap: .75rem; }
+.shelf-step, .shelf-action { min-height: 44px; border: 0; background: none; color: var(--accent); font: inherit; font-size: .8rem; cursor: pointer; }
+.shelf-step { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-width: 44px; padding: .5rem; }
+.shelf-action { padding: .5rem .25rem; text-decoration: underline; text-underline-offset: .25em; }
+.shelf-step:hover, .shelf-action:hover { color: var(--accent-hover); }
+.shelf-step:disabled, .shelf-action:disabled { color: var(--text-secondary); opacity: .45; cursor: default; }
+.shelf-position { min-width: 64px; text-align: center; color: var(--text-secondary); font: .68rem/1.5 var(--font-mono); font-variant-numeric: tabular-nums; }
+.shelf-stage { position: relative; height: 30rem; }
+.shelf-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: pan-y pinch-zoom; }
 .shelf-canvas.is-dragging { cursor: grabbing; }
-.shelf-details { position: absolute; top: 0; right: 0; bottom: 0; width: min(320px, 46%); padding: 1.25rem; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(8px); border-left: 1px solid var(--border); overflow-y: auto; opacity: 0; visibility: hidden; transform: translateX(16px); transition: opacity .25s ease, transform .25s ease, visibility .25s; z-index: 3; display: flex; flex-direction: column; gap: .5rem; }
-.is-focused .shelf-details { opacity: 1; visibility: visible; transform: none; }
-.shelf-back { align-self: flex-start; font-size: .8rem; color: var(--accent); background: none; border: none; padding: .4rem 0; cursor: pointer; margin-bottom: .3rem; }
-.shelf-back:hover { color: var(--accent-hover); }
-.shelf-details-title { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; }
+.shelf-details { position: absolute; top: 0; right: 0; bottom: 0; width: min(320px, 46%); padding: 1.5rem 1.25rem; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(8px); border-left: 1px solid var(--border); overflow-y: auto; z-index: 3; display: flex; flex-direction: column; gap: .5rem; }
+.shelf-details-title { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; font-weight: 400; }
 .shelf-details-author { font-size: .8rem; color: var(--text-secondary); }
-.shelf-details-desc { font-size: .85rem; color: var(--text-secondary); line-height: 1.65; }
-.shelf-details-quote { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.5; margin-top: .6rem; }
-.shelf-details-quoteby { font-size: .7rem; color: var(--text-secondary); }
-.shelf-details-link { font-size: .85rem; padding-block: .5rem; }
-.shelf-details-link::after { content: " ↗"; }
-.shelf-details-hint { margin-top: auto; font: .6rem/1.6 var(--font-mono); color: var(--text-secondary); }
+.shelf-details-label { margin-top: 1.25rem; font: .62rem/1.6 var(--font-mono); color: var(--text-secondary); }
+.shelf-details-note { font-size: .9rem; line-height: 1.7; }
+.shelf-details-link { align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; margin-top: .3rem; gap: .4rem; font-size: .8rem; }
+.shelf-details-hint { margin-top: auto; font: .6rem/1.6 var(--font-mono); color: var(--text-secondary); padding-top: 1rem; }
 .shelf-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: .85rem; color: var(--text-secondary); pointer-events: none; }
-.is-ready .shelf-loading { opacity: 0; visibility: hidden; }
-.shelf-fallback { padding: 3rem 1.5rem; background: var(--surface); font-size: .9rem; color: var(--text-secondary); margin: 1rem 0 1.5rem; }
-@media (max-width: 620px) {
-  .shelf-experience { height: 26rem; }
-  .shelf-details { inset: auto 0 0; width: auto; max-height: 72%; border-left: none; border-top: 1px solid var(--border); transform: translateY(16px); gap: .35rem; padding: .9rem 1rem .75rem; }
-  .is-focused .shelf-details { transform: none; }
+.shelf-experience .shelf-instructions { margin-top: 0; }
+.shelf-book-picker .book-list button { display: block; width: 100%; min-height: 44px; padding: .85rem 0; border: 0; background: none; color: var(--text); text-align: left; font: inherit; font-size: .85rem; cursor: pointer; }
+.shelf-book-picker .book-list button:hover, .shelf-book-picker .book-list button[aria-current="true"] { color: var(--accent); }
+.shelf-book-picker .book-list button:disabled { cursor: wait; opacity: .6; }
+.shelf-fallback { padding: 2rem 1.5rem; background: var(--surface); font-size: .9rem; color: var(--text-secondary); margin: 1rem 0; }
+.is-fallback .shelf-stage { height: auto; }
+.is-fallback .shelf-details { position: static; width: auto; border-left: 0; border-top: 1px solid var(--border); overflow: visible; }
+@container (max-width: 759px) {
+  .shelf-toolbar { gap: .25rem; }
+  .shelf-navigation { gap: .2rem; }
+  .shelf-step-label { display: none; }
+  .shelf-action { font-size: .75rem; }
+  .shelf-stage { height: auto; }
+  .shelf-canvas { position: relative; height: 26rem; }
+  .shelf-details { position: relative; inset: auto; width: auto; max-height: none; padding: 1.25rem .25rem 1rem; border-left: none; border-top: 1px solid var(--border); overflow: visible; background: none; backdrop-filter: none; gap: .4rem; }
   .shelf-details-hint { display: none; }
-  .shelf-details-title { font-size: 1.25rem; }
-  .shelf-details-desc { font-size: .8rem; }
+  .shelf-details-title { font-size: 1.5rem; }
+  .shelf-details-label { margin-top: .8rem; }
+  .shelf-experience .shelf-instructions { margin-top: .5rem; }
 }
