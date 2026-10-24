@@ -42,3 +42,22 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+  save-snapshot:
+    needs: deploy
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Save current Goodreads snapshot
+        run: |
+          python3 scripts/sync-goodreads.py
+          git add src/data/goodreads.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh Goodreads reading snapshot"
+          git push origin HEAD:main
