@@ -628,19 +628,13 @@ export function createBackCover(book: CatalogBook) {
   ctx.fillRect(108, 180 + lines * 58 + 78, 108, 9);
   ctx.restore();
 
-  ctx.font = `italic 500 54px ${serif}`;
-  wrapText(
-    ctx,
-    `“${book.quote}”`,
-    108,
-    180 + lines * 58 + 132,
-    808,
-    63,
-    6,
-  );
-  ctx.font = `600 24px ${sans}`;
-  ctx.letterSpacing = "2px";
-  ctx.fillText(book.quoteBy.toUpperCase(), 110, 1160);
+  if (book.quote) {
+    ctx.font = `italic 500 54px ${serif}`;
+    wrapText(ctx, `“${book.quote}”`, 108, 180 + lines * 58 + 132, 808, 63, 6);
+    ctx.font = `600 24px ${sans}`;
+    ctx.letterSpacing = "2px";
+    ctx.fillText(book.quoteBy.toUpperCase(), 110, 1160);
+  }
 
   ctx.globalAlpha = 0.78;
   ctx.font = `500 20px ${sans}`;

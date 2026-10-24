@@ -1,0 +1,72 @@
+---
+import reading from "../data/goodreads.json";
+const dateLabel = (date: string) => new Intl.DateTimeFormat("en-US", {
+  month: "short", year: "numeric", timeZone: "UTC",
+}).format(new Date(`${date}T00:00:00Z`));
+---
+<details class="reading-history" id="reading-history">
+  <summary>All {reading.books.length} books I’ve read</summary>
+  <p class="reading-source">Latest additions first. Ratings are mine.</p>
+  <div class="reading-search" hidden>
+    <label for="reading-query">Search by title or author</label>
+    <div class="reading-search-row">
+      <input id="reading-query" type="search" placeholder="Find a book…" autocomplete="off" aria-controls="reading-books" />
+      <button type="button" class="reading-clear" hidden>Clear</button>
+    </div>
+  </div>
+  <p class="reading-count" role="status" aria-live="polite" hidden></p>
+  <ul class="reading-books" id="reading-books">
+    {reading.books.map((book, index) => <li class="reading-book" data-search={`${book.title} ${book.author}`} hidden={index >= 24}>
+      <div class="reading-book-copy">
+        <a href={book.url} class="reading-book-title">{book.title}</a>
+        <p class="reading-book-author">{book.author}</p>
+        {book.review && <><p class="reading-review">{book.review}</p><a href={book.reviewUrl} class="reading-review-link">My review on Goodreads <span aria-hidden="true">↗</span></a></>}
+      </div>
+      <div class="reading-book-meta">
+        <span class="reading-rating">{book.rating ? `${book.rating} / 5` : "Unrated"}</span>
+        {book.readAt && <time datetime={book.readAt}>Read {dateLabel(book.readAt)}</time>}
+      </div>
+    </li>)}
+  </ul>
+  <button class="reading-more" type="button" hidden>Show 24 more books</button>
+  <p class="reading-source">From my <a href={reading.shelfUrl}>Goodreads Read shelf</a>. Updated <time datetime={reading.syncedAt}>{new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(reading.syncedAt))}</time>.</p>
+  <noscript><style is:inline>.reading-book[hidden] { display: flex; }</style></noscript>
+</details>
+<script>
+  const history = document.querySelector<HTMLDetailsElement>(".reading-history");
+  if (history) {
+    const search = history.querySelector<HTMLDivElement>(".reading-search")!;
+    const input = history.querySelector<HTMLInputElement>("#reading-query")!;
+    const clear = history.querySelector<HTMLButtonElement>(".reading-clear")!;
+    const count = history.querySelector<HTMLParagraphElement>(".reading-count")!;
+    const more = history.querySelector<HTMLButtonElement>(".reading-more")!;
+    const rows = [...history.querySelectorAll<HTMLLIElement>(".reading-book")];
+    const normalize = (value: string) => value.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().trim();
+    const searchable = rows.map(row => normalize(row.dataset.search ?? ""));
+    let limit = 24;
+    let matches = rows;
+    function render() {
+      const query = normalize(input.value);
+      matches = rows.filter((row, index) => searchable[index].includes(query));
+      const visible = new Set(matches.slice(0, limit));
+      rows.forEach(row => { row.hidden = !visible.has(row); });
+      count.textContent = matches.length
+        ? `Showing ${Math.min(limit, matches.length)} of ${matches.length} ${query ? "matching " : ""}books`
+        : "No books match that search. Try another title or author.";
+      clear.hidden = !input.value;
+      more.hidden = limit >= matches.length;
+      more.textContent = `Show ${Math.max(0, Math.min(24, matches.length - limit))} more books`;
+    }
+    input.addEventListener("input", () => { limit = 24; render(); });
+    clear.addEventListener("click", () => { input.value = ""; limit = 24; render(); input.focus(); });
+    more.addEventListener("click", () => {
+      const next = matches[limit];
+      limit += 24;
+      render();
+      next?.querySelector<HTMLAnchorElement>("a")?.focus();
+    });
+    search.hidden = false;
+    count.hidden = false;
+    render();
+  }
+</script>

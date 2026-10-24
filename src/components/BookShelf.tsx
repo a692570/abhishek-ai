@@ -37,7 +37,7 @@ export default function BookShelf() {
       } catch {
         if (!cancelled) {
           setFailed(true);
-          setStatus("The 3D shelf is unavailable. Choose a title to read my note.");
+          setStatus("The 3D shelf is unavailable. Choose a title to see its details.");
         }
       }
     }
@@ -128,10 +128,10 @@ export default function BookShelf() {
           <span className="shelf-position" aria-live="polite" aria-atomic="true">{currentIndex + 1} of {catalog.length}</span>
           <button type="button" className="shelf-step" aria-label="Next book" disabled={!canNavigate || currentIndex === catalog.length - 1} onClick={() => navigateBy(1)}><span className="shelf-step-label">Next</span><span aria-hidden="true">→</span></button>
         </div>
-        <button type="button" className="shelf-action" disabled={!canNavigate} onClick={isFocused ? backToShelf : () => openBook(activeIndex)}>{isFocused ? "Back to shelf" : "Read my note"}</button>
+        <button type="button" className="shelf-action" disabled={!canNavigate} onClick={isFocused ? backToShelf : () => openBook(activeIndex)}>{isFocused ? "Back to shelf" : "Open book"}</button>
       </div>
       <div className="shelf-stage">
-        {failed ? <p className="shelf-fallback">The 3D shelf is unavailable in this browser. Choose a title below to read my note.</p> : <canvas
+        {failed ? <p className="shelf-fallback">The 3D shelf is unavailable in this browser. Choose a title below to see its details.</p> : <canvas
           ref={canvasRef}
           className="shelf-canvas"
           tabIndex={0}
@@ -142,17 +142,18 @@ export default function BookShelf() {
           <aside ref={noteRef} className="shelf-details" tabIndex={-1} aria-labelledby="shelf-note-title">
             <h3 id="shelf-note-title" className="shelf-details-title">{selectedBook.title}</h3>
             <p className="shelf-details-author">{selectedBook.author}</p>
-            <p className="shelf-details-label">Why it stayed with me</p>
-            <p className="shelf-details-note">{selectedBook.quote}</p>
+            <p className="shelf-details-rating">{selectedBook.rating ? `My rating: ${selectedBook.rating} of 5` : "Unrated on Goodreads"}</p>
+            {selectedBook.readAt && <p className="shelf-details-date">Finished <time dateTime={selectedBook.readAt}>{new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${selectedBook.readAt}T00:00:00Z`))}</time></p>}
+            {selectedBook.quote && <><p className="shelf-details-label">My Goodreads review</p><p className="shelf-details-note">{selectedBook.quote}</p></>}
             <a className="shelf-details-link" href={selectedBook.url} target="_blank" rel="noopener">View on Goodreads<span aria-hidden="true"> ↗</span></a>
             {!failed && <p className="shelf-details-hint">Drag to turn the book. Press R to reset its view.</p>}
           </aside>
         )}
         {!ready && !failed && <div className="shelf-loading" role="status"><span>{status}…</span></div>}
       </div>
-      <p id="shelf-instructions" className="shelf-instructions">{failed ? "Every book and note is available below." : "Drag sideways to browse · Select a book to read my note · Esc to return"}</p>
+      <p id="shelf-instructions" className="shelf-instructions">{failed ? "Every book is available in the reading history below." : "Drag sideways to browse · Select a book for details · Esc to return"}</p>
       <details className="book-list-details shelf-book-picker" ref={pickerRef}>
-        <summary>Browse the book list</summary>
+        <summary>Choose from these {catalog.length} books</summary>
         <ul className="book-list">{catalog.map((book, index) => <li key={book.id}><button type="button" disabled={!canNavigate} aria-current={currentIndex === index ? "true" : undefined} onClick={() => pickBook(index)}>{book.shortTitle}<span>{book.author}</span></button></li>)}</ul>
       </details>
     </div>

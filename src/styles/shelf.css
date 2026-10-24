@@ -13,8 +13,10 @@
 .shelf-details { position: absolute; top: 0; right: 0; bottom: 0; width: min(320px, 46%); padding: 1.5rem 1.25rem; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(8px); border-left: 1px solid var(--border); overflow-y: auto; z-index: 3; display: flex; flex-direction: column; gap: .5rem; }
 .shelf-details-title { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; font-weight: 400; }
 .shelf-details-author { font-size: .8rem; color: var(--text-secondary); }
+.shelf-details-rating { margin-top: 1.25rem; font-size: .9rem; }
+.shelf-details-date { font-size: .8rem; color: var(--text-secondary); }
 .shelf-details-label { margin-top: 1.25rem; font: .62rem/1.6 var(--font-mono); color: var(--text-secondary); }
-.shelf-details-note { font-size: .9rem; line-height: 1.7; }
+.shelf-details-note { font-size: .9rem; line-height: 1.7; white-space: pre-line; }
 .shelf-details-link { align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; margin-top: .3rem; gap: .4rem; font-size: .8rem; }
 .shelf-details-hint { margin-top: auto; font: .6rem/1.6 var(--font-mono); color: var(--text-secondary); padding-top: 1rem; }
 .shelf-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: .85rem; color: var(--text-secondary); pointer-events: none; }
@@ -25,6 +27,31 @@
 .shelf-fallback { padding: 2rem 1.5rem; background: var(--surface); font-size: .9rem; color: var(--text-secondary); margin: 1rem 0; }
 .is-fallback .shelf-stage { height: auto; }
 .is-fallback .shelf-details { position: static; width: auto; border-left: 0; border-top: 1px solid var(--border); overflow: visible; }
+.reading-history { margin-top: 1.5rem; border-top: 1px solid var(--border); }
+.reading-history > summary { padding-block: .6rem; color: var(--text); }
+.reading-search { margin-top: .75rem; }
+.reading-search label { display: block; margin-bottom: .4rem; font-size: .8rem; color: var(--text-secondary); }
+.reading-search-row { display: flex; gap: .75rem; align-items: center; }
+.reading-search input { min-width: 0; width: 100%; min-height: 44px; padding: .6rem .8rem; border: 1px solid var(--border); border-radius: 3px; background: var(--bg); color: var(--text); font: 1rem/1.5 var(--font-sans); }
+.reading-search input::placeholder { color: var(--text-secondary); }
+.reading-clear, .reading-more { min-height: 44px; padding: .5rem .25rem; border: 0; background: none; color: var(--accent); font: .8rem/1.5 var(--font-sans); cursor: pointer; text-decoration: underline; text-underline-offset: .25em; }
+.reading-clear:hover, .reading-more:hover { color: var(--accent-hover); }
+.reading-count, .reading-source { color: var(--text-secondary); font-size: .75rem; line-height: 1.7; margin-block: .75rem; }
+.reading-books { list-style: none; }
+.reading-book { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; padding-block: 1rem; border-bottom: 1px solid var(--border); }
+.reading-book[hidden] { display: none; }
+.reading-book-copy { min-width: 0; }
+.reading-book-title { display: inline-block; color: var(--text); font-size: .9rem; text-decoration: none; line-height: 1.6; overflow-wrap: anywhere; }
+.reading-book-title:hover { color: var(--accent); }
+.reading-book-author { color: var(--text-secondary); font-size: .8rem; margin-top: .15rem; }
+.reading-book-meta { display: flex; flex-direction: column; align-items: flex-end; gap: .3rem; flex-shrink: 0; color: var(--text-secondary); font: .68rem/1.6 var(--font-mono); }
+.reading-rating { color: var(--text); font-variant-numeric: tabular-nums; }
+.reading-review { white-space: pre-line; font-size: .85rem; line-height: 1.7; margin-top: .65rem; }
+.reading-review-link { display: inline-block; padding-block: .5rem; font-size: .75rem; }
+@media (max-width: 650px) {
+  .reading-book { gap: .75rem; align-items: flex-start; }
+  .reading-book-meta { padding-top: .2rem; font-size: .62rem; }
+}
 @container (max-width: 759px) {
   .shelf-toolbar { gap: .25rem; }
   .shelf-navigation { gap: .2rem; }
