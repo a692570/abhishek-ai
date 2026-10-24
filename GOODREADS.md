@@ -4,7 +4,7 @@ A checked-in snapshot supports local builds without network access.
 GitHub Pages refreshes the snapshot before every deployment and daily at 13:43 UTC.
 The importer fetches every RSS page, validates the source, and writes atomically.
 Any failed or incomplete import stops deployment and keeps the current live site.
-Twelve recent additions appear in 3D; the complete history is searchable below.
+Five-star books appear in 3D; the complete history is searchable below.
 
 Profile: https://www.goodreads.com/user/show/50942938-abhishek-sharma
 Feed: https://www.goodreads.com/review/list_rss/50942938?shelf=read&per_page=200&page=1

@@ -53,8 +53,8 @@ const palettes = [
 ];
 const motifs: BookMotif[] = ["circuit", "lattice", "wave", "maze", "branches", "orbit"];
 
-// The feed is ordered by the date a book was added to the read shelf.
-export const catalog: CatalogBook[] = reading.books.slice(0, 12).map((book) => {
+// Five-star books retain the feed's order, newest additions to the Read shelf first.
+export const catalog: CatalogBook[] = reading.books.filter(book => book.rating === 5).map((book) => {
   const seed = Number(book.id);
   const palette = palettes[seed % palettes.length];
   const rating = book.rating ? `My Goodreads rating: ${book.rating} of 5.` : "On my Goodreads read shelf.";
