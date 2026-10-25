@@ -6,6 +6,11 @@ The importer fetches every RSS page, validates the source, and writes atomically
 Any failed or incomplete import stops deployment and keeps the current live site.
 Five-star books appear in 3D; the complete history is searchable below.
 
+## Featured selection and personal notes
+Death Note and One Piece entries are excluded from the featured shelf. Duplicate title and author pairs use their newest feed entry. The complete reading history retains all imported entries.
+
+Personal website notes are stored separately in src/data/book-notes.json. Abhishek requested these drafts in his voice; they are labeled “My take” on the site and are not posted to Goodreads. An actual Goodreads review takes precedence whenever one exists. Daily imports do not overwrite the website notes.
+
 Profile: https://www.goodreads.com/user/show/50942938-abhishek-sharma
 Feed: https://www.goodreads.com/review/list_rss/50942938?shelf=read&per_page=200&page=1
 

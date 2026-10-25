@@ -144,7 +144,7 @@ export default function BookShelf() {
             <p className="shelf-details-author">{selectedBook.author}</p>
             <p className="shelf-details-rating">{selectedBook.rating ? `My rating: ${selectedBook.rating} of 5` : "Unrated on Goodreads"}</p>
             {selectedBook.readAt && <p className="shelf-details-date">Finished <time dateTime={selectedBook.readAt}>{new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${selectedBook.readAt}T00:00:00Z`))}</time></p>}
-            {selectedBook.quote && <><p className="shelf-details-label">My Goodreads review</p><p className="shelf-details-note">{selectedBook.quote}</p></>}
+            {selectedBook.quote && <><p className="shelf-details-label">{selectedBook.noteLabel}</p><p className="shelf-details-note">{selectedBook.quote}</p></>}
             <a className="shelf-details-link" href={selectedBook.url} target="_blank" rel="noopener">View on Goodreads<span aria-hidden="true"> ↗</span></a>
             {!failed && <p className="shelf-details-hint">Drag to turn the book. Press R to reset its view.</p>}
           </aside>

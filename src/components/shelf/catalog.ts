@@ -1,4 +1,5 @@
 import reading from "../../data/goodreads.json";
+import personalNotes from "../../data/book-notes.json";
 
 export type BookMotif =
   | "lattice"
@@ -44,6 +45,7 @@ export type CatalogBook = {
   rating: number;
   readAt: string | null;
   reviewUrl: string;
+  noteLabel: string;
 };
 
 const palettes = [
@@ -53,19 +55,30 @@ const palettes = [
 ];
 const motifs: BookMotif[] = ["circuit", "lattice", "wave", "maze", "branches", "orbit"];
 
-// Five-star books retain the feed's order, newest additions to the Read shelf first.
-export const catalog: CatalogBook[] = reading.books.filter(book => book.rating === 5).map((book) => {
+const notes: Record<string, string> = personalNotes;
+const seenTitles = new Set<string>();
+
+// Keep the newest edition of each featured title. Full history retains every entry.
+export const catalog: CatalogBook[] = reading.books.filter(book => {
+  if (book.rating !== 5 || /^(Death Note|One Piece)\b/i.test(book.title)) return false;
+  const title = book.title.replace(/\s*\([^)]*\)\s*$/, "").trim().toLowerCase();
+  const key = `${title}|${book.author.toLowerCase()}`;
+  if (seenTitles.has(key)) return false;
+  seenTitles.add(key);
+  return true;
+}).map((book) => {
   const seed = Number(book.id);
   const palette = palettes[seed % palettes.length];
   const rating = book.rating ? `My Goodreads rating: ${book.rating} of 5.` : "On my Goodreads read shelf.";
+  const note = book.review || notes[book.id] || "";
   return {
     id: book.id,
     title: book.title,
     shortTitle: book.title.replace(/\s*\([^)]*#\d[^)]*\)$/, ""),
     author: book.author,
     description: rating,
-    quote: book.review,
-    quoteBy: book.review ? "Abhishek Sharma" : "",
+    quote: note,
+    quoteBy: note ? "Abhishek Sharma" : "",
     format: "Book",
     availability: "Read",
     url: book.url,
@@ -79,5 +92,6 @@ export const catalog: CatalogBook[] = reading.books.filter(book => book.rating =
     readAt: book.readAt,
     reviewUrl: book.reviewUrl,
     coverImage: book.imageUrl ?? undefined,
+    noteLabel: book.review ? "My Goodreads review" : "My take",
   };
 });
