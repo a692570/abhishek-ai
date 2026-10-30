@@ -1,4 +1,7 @@
-@font-face { font-family: "Geist Mono"; src: url("/fonts/GeistMono-Variable.ttf") format("truetype"); font-style: normal; font-weight: 100 900; font-display: swap; }
+/* @fonts:begin managed by scripts/subset-fonts.py - rerun after content changes */
+@font-face { font-family: "Geist Mono"; src: url("/fonts/GeistMono-Core.ttf") format("truetype"); font-style: normal; font-weight: 100 900; font-display: swap; unicode-range: U+20-7E, U+B7, U+E1, U+142, U+14D, U+15F, U+16B, U+2013-2014, U+2018-2019, U+201C-201D, U+2026, U+2190-2193, U+2197, U+2212; }
+@font-face { font-family: "Geist Mono"; src: url("/fonts/GeistMono-Ext.ttf") format("truetype"); font-style: normal; font-weight: 100 900; font-display: swap; unicode-range: U+A0-AC, U+AE-B6, U+B8-E0, U+E2-113, U+116-12B, U+12E-131, U+134-137, U+139-13E, U+141, U+143-148, U+14A-14C, U+150-15E, U+160-16A, U+16C-17E; }
+/* @fonts:end */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
 html {

@@ -5,3 +5,4 @@ dist/
 .DS_Store
 .impeccable/review/
 __pycache__/
+font-diff-out/

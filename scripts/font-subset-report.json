@@ -1,0 +1,53 @@
+{
+  "source": {
+    "path": "scripts/GeistMono-Variable-src.ttf",
+    "bytes": 171948,
+    "glyphs": 1159,
+    "cmap_codepoints": 889
+  },
+  "axis_clamped_to": "not clamped (kept 100-900) - instancing changed rendering at cover-art weights",
+  "features_kept": [
+    "ccmp",
+    "locl",
+    "mark",
+    "mkmk"
+  ],
+  "outputs": {
+    "Core": {
+      "path": "public/fonts/GeistMono-Core.ttf",
+      "bytes": 22588,
+      "codepoints": 114,
+      "unicode_range": "U+20-7E, U+B7, U+E1, U+142, U+14D, U+15F, U+16B, U+2013-2014, U+2018-2019, U+201C-201D, U+2026, U+2190-2193, U+2197, U+2212",
+      "axes": {
+        "wght": [
+          100.0,
+          900.0
+        ]
+      }
+    },
+    "Ext": {
+      "path": "public/fonts/GeistMono-Ext.ttf",
+      "bytes": 32200,
+      "codepoints": 205,
+      "unicode_range": "U+A0-AC, U+AE-B6, U+B8-E0, U+E2-113, U+116-12B, U+12E-131, U+134-137, U+139-13E, U+141, U+143-148, U+14A-14C, U+150-15E, U+160-16A, U+16C-17E",
+      "axes": {
+        "wght": [
+          100.0,
+          900.0
+        ]
+      }
+    }
+  },
+  "total_bytes": 54788,
+  "kept_codepoints": {
+    "core": 114,
+    "ext": 204
+  },
+  "rendered_distinct": 113,
+  "format": "truetype (woff2 rejected: changes rasterization)",
+  "kept_table_notes": {
+    "glyph_names": "kept (post 2.0) - dropping shifts paint 1px",
+    "hinting": "kept (prep+gasp) - dropping shifts AA",
+    "meta": "dropped - tested, no rendering effect"
+  }
+}
